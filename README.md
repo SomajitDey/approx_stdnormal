@@ -6,5 +6,25 @@ The distribution of the generated random numbers very closely resembles the stan
 
 This PRNG may be used as a performance-oriented approximation to the standard normal distribution, or, whenever a unimodal, symmetric, mesokurtic distribution of zero mean and unit variance is required.
 
+## The Math behind
+
+Suppose $Z$ denotes a standard normal variate and $U$ a variate from a uniform distribution $\epsilon \ [0,1]$.
+
+Box-Muller transform says: 
+
+$Z_1 = Rcos(\theta)$ and $Z_2 = Rsin(\theta)$, where $R = \sqrt{-2lnU_1}$ and $\theta = 2\pi U_2$.
+
+We approximate $cos(\pi x)$ and $sin(\pi x)$ above with $\pm {1-x^2 \over 1+x^2}$ and $2x \over 1+x^2$ respectively, for $x \ \epsilon \ [-1,1]$.
+
+For us:
+
+Sample $U$ from $[-1,1]$ uniformly. Then, 
+
+$Z_1 = \sqrt{-lnU_1^2}{1-U_2^2 \over 1+U_2^2}{U_1 \over |U_1|}$ and
+
+$Z_2 = \sqrt{-lnU_1^2}{2U_2 \over 1+U_2^2}$
+
+Above, ${U_1 \over |U_1|}$ is to provide $\pm$ with equal probability.
+
 ## License
 [MIT](https://opensource.org/license/mit/)

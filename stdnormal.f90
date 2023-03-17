@@ -25,7 +25,7 @@ module stdnormal
     
     z(:u1_size) = 2/(1 + u2*u2)
     z(u1_size+1:) = sign(z(:z_diff_u1_size) - 1, u1(:z_diff_u1_size))
-    u1 = sqrt(-2*log(abs(u1)))
+    u1 = sqrt(-log(u1*u1))
     z(:u1_size) = z(:u1_size)*u2*u1
     z(u1_size+1:) = z(u1_size+1:)*u1(:z_diff_u1_size)
     
