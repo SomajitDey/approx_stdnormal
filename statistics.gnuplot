@@ -18,4 +18,9 @@ print 'Quartiles: ', STATS_lo_quartile, ' & ', STATS_up_quartile
 binwidth = 0.1
 bin(val) = binwidth*floor(val/binwidth) + binwidth/2.0
 set boxwidth binwidth
-plot datfile using (bin($1)):(1.0/STATS_records) smooth frequency with boxes title 'Normalized frequency'
+plot datfile using (bin($1)):(1.0/(STATS_records*binwidth)) smooth frequency with boxes title 'Approx stdnormal'
+
+# Superimposing actual stdnormal on the histogram
+
+gauss(x) = (1/sqrt(2*pi))*exp(-x**2/2)
+repl gauss(x) title 'Actual stdnormal fit'
