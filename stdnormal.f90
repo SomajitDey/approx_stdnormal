@@ -22,6 +22,7 @@ module stdnormal
     u1_size = size(u1) ! Also equals the size of u2 by the way
     z_diff_u1_size = z_size - u1_size
     u2 => u(u1_size+1:) ! u2 refers to the second half of array u
+    ! u2 = u2*0.987 ! This somehow gives a better fit. Try it!!
     
     z(:u1_size) = 2/(1 + u2*u2)
     z(u1_size+1:) = sign(z(:z_diff_u1_size) - 1, u1(:z_diff_u1_size))
